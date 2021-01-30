@@ -1,0 +1,23 @@
+.techfont{
+  font-family: 'Roboto', sans-serif;
+}
+.custom-caps{
+  text-transform:uppercase;
+}
+.custom-firstcaps{
+  text-transform:capitalize;
+}
+.centerstage{
+  margin-left: auto;
+  margin-right: auto;
+}
+.posttitle{
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+  font-weight: bolder;
+  text-align: center;
+}
+.postcontent{
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5em;
+}

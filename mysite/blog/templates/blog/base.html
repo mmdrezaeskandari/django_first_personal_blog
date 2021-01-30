@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- medium editor -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <title></title>
+  </head>
+  <body>
+    <!-- nav bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light techfont">
+      <div class="container-fluid col-md-12">
+        <a class="navbar-brand" href="{% url 'post_list'%}">Blog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about'%}">About</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'post_new'%}">NewPost</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/mmdrezaeskandari">Github</a>
+            </li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Account
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="{% url 'post_new'%}">New Post</a></li>
+                <li><a class="dropdown-item" href="{% url 'post_draft_drafts'%}">Posts Draft</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout'%}">Logout</a></li>
+                <li><p class="dropdown-item">welcome {{ user.username }}</p></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'admin:index'%}">Admin</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login'%}"><i class="bi bi-person-circle"></i>Login</a>
+            </li>
+            {% endif %}
+          </ul>
+          <span class="navbar-text">
+            My first personal Django Blog :)
+          </span>
+        </div>
+      </div>
+    </nav>
+    <!-- nav bar end -->
+
+    <!-- content -->
+    <div class="content container">
+      <div class="row">
+        <div class="container-fluid">
+          <div class="col-md-12 mx-auto">
+            {% block body_block%}
+
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- content end -->
+
+    <!-- footer -->
+
+    <!-- footer end -->
+
+    <script>var editor = new MediumEditor('.editable');</script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>
